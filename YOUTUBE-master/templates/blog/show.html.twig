@@ -1,0 +1,47 @@
+ {% extends 'base.html.twig' %}
+
+ {% block body %}
+
+ 
+
+        
+
+ <div class="row">
+
+ <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+  <div class="col-lg-12 col-md-6 mb-4">
+            <div class="card h-100">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="{{ article.image }}" alt="First slide">
+               <a href="#">{{ article.title }}</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Née au début du XXe siècle, la clémentine a rapidement fait sa place dans le
+                 quotidien des Français. Sa saveur douce et sa richesse en vitamines font de ce fruit hivernal un atout vitalité. Dégustée telle quelle 
+                ou travaillée en version sucrée ou salée, la clémentine met de l’énergie dans les assiettes !</p>
+                  <img src="https://sophieblossom.fr/wp-content/uploads/2017/11/slider-1-1.jpg"height="80" width="160" alt="En bref">
+
+                <hr> Une clémentine pèse 70 grammes en moyenne. En fonction de la variété, le fruit est plus ou moins gros. À maturité,
+                 sa peau rugueuse varie du vert à l’orange vif. Son goût doux et acidulé excite les papilles.</hr>
+
+                <hr>Légère en calories mais riche en vitamine C,
+                 la clémentine est le fruit de l’énergie pendant les saisons froides.</hr>
+
+                <hr> Son absence de pépins et sa chair
+                 plus juteuse lui a permis de supplanter la mandarine dans le cœur des Français.</hr>
+
+                <hr> Facile à transporter, elle se déguste à toute heure de la journée. Elle réveille plats
+                 (viandes, salades, crustacés, poissons, féculents) et desserts de sa petite touche fraîcheur surprenante.</hr>
+              </div>
+            </div>
+          </div>
+
+                 
+     
+ {% endblock %}
