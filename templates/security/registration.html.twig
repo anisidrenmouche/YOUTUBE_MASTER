@@ -2,7 +2,21 @@
 
 {% block body %}
 
-<h1> Bienvenue </1h>
+<h1> Bienvenue sur le formulaire d'inscription  </1h>
+
+{{form_start(form) }}
+
+{{form_row(form.username, {'label': 'Nom d\utilisateur','attr': {'placeholder': 'Utilisateur'}})}}
+
+{{form_row(form.email, {'label': 'Ton email','attr': {'placeholder': 'email'}})}}
+
+{{form_row(form.password, {'label': 'Ton mot de passe','attr': {'placeholder': 'mot de passe'}})}}
+
+{{form_row(form.confirm_password, {'label': 'confirmation de ton mot de passe','attr': {'placeholder': ' confirmation de ton mot de passe'}})}}
+
+<button type="submit" class="btn btn-success"> Inscription  </button>
+
+{{form_end(form)}}
 
 
 
