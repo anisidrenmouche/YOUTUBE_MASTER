@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -28,8 +30,17 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\Length(
+     * min = 8,
+     * max = 20,
+     * minMessage = "NON NON ton mot de passe est trop court {{ limit }} characters minumunm",
+     * maxMessage = "Bolos ton Titre est trop long {{ limit }} characters")
      */
     private $password;
+
+    /**
+     *@Assert\EqualTo(propertyPath="password", message=" vous n'avez pas ecrit le méme mot de passe")
+     */
 
     public $confirm_password;
 
