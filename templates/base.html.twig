@@ -37,11 +37,21 @@
                      <li class="nav-item">
                          <a class="nav-link" href="{{path('blog_faq')}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">F.A.Q</font></font></a>
                      </li>
+
+                     {% if not app.user %}
+                     <li class="nav-item">
+                         <a class="nav-link" href="{{path('security_login')}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Connection</font></font></a>
+                     </li>
+                     {% else %}
+                     <li class="nav-item">
+                         <a class="nav-link" href="{{path('security_logout')}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Deconnection</font></font></a>
+                     </li>
                  </ul>
-                 <form class="form-inline my-2 my-lg-0">
-                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                     <button class="btn btn-secondary my-2 my-sm-0" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chercher</font></font></button>
-                 </form>
+                 {% endif %}
+                 
+
+                
+                
              </div>
          </nav>
 
