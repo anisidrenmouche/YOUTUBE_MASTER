@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
-use App\Form\ArticleType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use App\Repository\ArticleRepository;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
+use App\Entity\Comment;
+use App\Form\ArticleType;
+use App\Form\CommentType;
+use App\Repository\ArticleRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
@@ -114,12 +116,26 @@ class BlogController extends AbstractController
      * @param $id
      * @return Response
      */
-        public function show (ArticleRepository $repo, $id){
+        public function show (ArticleRepository $repo, $id, Request $request, objectManager $manager, Article $article){
+            $comment = new Comment();
+            $form = $this->createForm(CommentType::class, $comment);
+
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()){
+                $comment->setCreatedAt(new \DateTime())
+                        ->setArticle($article);
+                        $manager->persist($comment);
+                        $manager->flush();
+                        return $this->redirectToRoute('blog_show', ['id' => $article ->getId()]);
+            }
+            
             /* $repo = $this->getDoctrine()->getRepository(Article :: class);*/
 
             $article = $repo->find($id);
             return $this->render('blog/show.html.twig', [
-                'article' => $article
+                'article' => $article, 
+                'commentForm' => $form->createView()
             ]);
         }
 

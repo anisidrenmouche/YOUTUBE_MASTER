@@ -43,14 +43,15 @@
           </div>
 <div class="container">
     <div class="row">
-        <div class="comments col-md-9" id="comments">
-            <h3 class="mb-2">Comments</h3> <br>
+        
+             <br>
+            <h3> {{article. comments | length }} Commentaires </h3>
         
         </article>
     <section id="commentaires">
         {% for comment in article.comments %}
         <div class="comment">
-                            <a href=""><img class="mx-auto rounded-circle img-fluid" src="http://demos.themes.guide/bodeo/assets/images/users/m103.jpg" alt="avatar"></a>
+                <img class="mx-auto rounded-circle img-fluid" src="" alt=""></a>
 
             <div class="row">
                 <div class="clo-3">
@@ -62,6 +63,23 @@
             </div>
         </div>
         {% endfor %}
+
+        {% if app.user %}
+
+        {{form_start(commentForm) }}
+        {{form_row(commentForm.author, {'attr':{'placeholder':"votre nom" }})}}
+        {{form_row(commentForm.content, {'attr':{'placeholder':"votre commentaire" }})}}
+
+        <button type="submit" class="btn btn-success"> Commenter </button>
+        {{form_end(commentForm) }}
+        
+        {% else %}
+        <br> 
+          <h2> vous devez etre connecté pour commenter </h2>
+          <a href="{{path('security_login')}}" class="btn btn-primary">Connection </a>
+        {% endif %}
+
+
     </section>
 {% endblock %}
 
